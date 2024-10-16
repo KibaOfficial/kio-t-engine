@@ -1,7 +1,7 @@
 {
-  "name": "kio-farming-valley",
+  "name": "kio-t-engine",
   "version": "1.0.0",
-  "description": "a stardew valley inspired farming game written in typescript with the webapi",
+  "description": "a lightweight 2D game engine written in TypeScript, focused on creating browser-based games with only using the web API",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
