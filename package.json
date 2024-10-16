@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "concurrently \"tsc -w\" \"http-server public -p 42069\"",
-    "start": "npx http-server public"
+    "start": "npx http-server public -p 42069"
   },
   "author": "KibaOfficial",
   "license": "MIT",
