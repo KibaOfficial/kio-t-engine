@@ -1,0 +1,22 @@
+{
+  "name": "kio-farming-valley",
+  "version": "1.0.0",
+  "description": "a stardew valley inspired farming game written in typescript with the webapi",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "concurrently \"tsc -w\" \"http-server public -p 42069\"",
+    "start": "npx http-server public"
+  },
+  "author": "KibaOfficial",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "concurrently": "^9.0.1",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "http-server": "^14.1.1"
+  }
+}
