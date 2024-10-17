@@ -3,6 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
+import { createSecureContext } from "tls";
 import { GameCanvas } from "./constants.js";
 import Logger from "./tools/Logger.js";
 
@@ -26,6 +27,19 @@ export function initCanvas(): GameCanvas {
 
   Logger({ status: "INFO", message: "Game initialized successfully" });
   return { game, gameCtx: ctx };
+}
+
+export function createScene(id: string, width: number, height: number) {
+  const canvas = document.createElement('canvas');
+  const canvasCtx = canvas.getContext("2d");
+  if (!canvasCtx) {
+    throw new Error("[Kio-T-Engine]: Coudlnt create canvas context")
+  }
+  canvas.id     = id;
+  canvas.width  = width;
+  canvas.height = height;
+  
+  return { canvas, canvasCtx}
 }
 
 export function updateLayer(
