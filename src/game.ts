@@ -44,7 +44,7 @@ export function gameLoop(currentTime: DOMHighResTimeStamp) {
   winManager.resizeCanvas(game!)
 
   // Check if game is running
-  if (getGameRun()) {
+  if (getGameRun() && game && gameCtx) {
     // If the game is paused, show the pause overlay
     if (inputManager.isGamePaused()) {
       if (gameCtx) {
@@ -59,7 +59,7 @@ export function gameLoop(currentTime: DOMHighResTimeStamp) {
     const dt = deltaTime.getDelta();
 
     // Update the FPS display
-    updateFPS(dt, gameCtx!);
+    updateFPS(dt, gameCtx);
 
     requestAnimationFrame(gameLoop);
   }

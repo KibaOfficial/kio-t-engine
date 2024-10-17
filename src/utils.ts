@@ -43,7 +43,7 @@ export function updateFPS(dt: number, ctx: CanvasRenderingContext2D) {
   
   const fps = 1 / dt
 
-  Logger({ status: "DEBUG", message: `FPS: ${fps}` })
+  Logger({ status: "DEBUG", message: `FPS: ${Math.round(fps)}` })
   
   updateLayer(ctx, (ctx: CanvasRenderingContext2D) => {
     ctx.font = '20px Arial';
