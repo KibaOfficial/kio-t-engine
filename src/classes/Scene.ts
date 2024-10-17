@@ -30,4 +30,12 @@ export class Scene {
     }
     return context;
   }
+
+  update(deltaTime: number): void {
+    Logger({ status: "WARN", message: "Scene.update() not implemented yet."});
+  }
+
+  render(): void {
+    Logger({ status: "WARN", message: "Scene.render() not implemented yet."});
+  }
 }

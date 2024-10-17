@@ -3,7 +3,6 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import { createSecureContext } from "tls";
 import { GameCanvas } from "./constants.js";
 import Logger from "./tools/Logger.js";
 
