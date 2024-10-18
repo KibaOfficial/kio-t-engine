@@ -67,6 +67,7 @@ export class InputManager {
   isKeyPressed(key: string): boolean {
     return this.keys.has(key.toLowerCase());
   }
+  
 
   /**
    * Checks if the game is currently paused.

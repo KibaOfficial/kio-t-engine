@@ -20,7 +20,6 @@ export function setGameRun(value: boolean): void {
     gameRun = value;
 }
 
-
 // Getters
 export function getGameInit(): boolean {
     return gameInit;

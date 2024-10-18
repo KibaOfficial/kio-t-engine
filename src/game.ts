@@ -1,3 +1,4 @@
+// game.ts
 // Copyright (c) 2024 KibaOfficial
 //
 // This software is released under the MIT License.
@@ -6,52 +7,36 @@
 import { DeltaTime } from "./classes/DeltaTime.js";
 import { InputManager } from "./classes/InputManager.js";
 import { WindowManager } from "./classes/WindowManager.js";
-import {
-  GameCanvas,
-  getGameInit,
-  getGameRun,
-  setGameInit,
-} from "./constants.js";
-import Logger from "./tools/Logger.js";
-import { initCanvas, updateFPS } from "./utils.js";
+import {  getGameRun } from "./constants.js";
+import { updateFPS } from "./utils.js";
 import { drawPauseOverlay } from "./Graphics.js";
+import { SceneManager } from "./classes/SceneManager.js";
+import { Scene } from "./classes/Scene.js";
 
-// Initialize DeltaTime, InputManager, and WindowManager
+// Initialize DeltaTime, InputManager, WindowManager and SceneManager
 const deltaTime = new DeltaTime();
 const inputManager = new InputManager();
 const winManager = new WindowManager();
+const sceneManager = new SceneManager();
 
-// Initialize Canvas element and context
-let { game, gameCtx }: GameCanvas = { game: null, gameCtx: null };
+// Create and add the gameScene to the SceneManager
+const gameScene = new Scene("gameScene", window.innerWidth, window.innerHeight);
+sceneManager.addScene(gameScene);
+sceneManager.switchScene("gameScene");
 
+// Initialize the game loop
 export function gameLoop(currentTime: DOMHighResTimeStamp) {
-  // Check if game was initialized
-  if (!getGameInit()) {
-    const canvasData = initCanvas();
-    game = canvasData.game;
-    gameCtx = canvasData.gameCtx;
-
-    if (!game || !gameCtx) {
-      Logger({ status: "ERROR", message: "Game initialization failed" });
-      setGameInit(false);
-      throw new Error("Game initialization failed");
-    }
-
-    setGameInit(true);
-  }
 
   // Resize the canvas using WindowManager
-  winManager.resizeCanvas(game!)
+  winManager.resizeCanvas(gameScene.canvas);
 
-  // Check if game is running
-  if (getGameRun() && game && gameCtx) {
+  // Check if the game is running
+  if (getGameRun()) {
     // If the game is paused, show the pause overlay
     if (inputManager.isGamePaused()) {
-      if (gameCtx) {
-        drawPauseOverlay(gameCtx); // Draw the pause overlay on the canvas
-      }
-      requestAnimationFrame(gameLoop); // Continue looping
-      return; // Skip game updates while paused
+      drawPauseOverlay(gameScene.ctx);
+      requestAnimationFrame(gameLoop);
+      return;
     }
 
     // Update DeltaTime every frame
@@ -59,7 +44,12 @@ export function gameLoop(currentTime: DOMHighResTimeStamp) {
     const dt = deltaTime.getDelta();
 
     // Update the FPS display
-    updateFPS(dt, gameCtx);
+    updateFPS(dt, gameScene.ctx);
+
+    // Call the update and render methods of the current scene
+    // but not needed yet
+    // sceneManager.update(dt);
+    // sceneManager.render();
 
     requestAnimationFrame(gameLoop);
   }
