@@ -22,18 +22,3 @@ export function drawPauseOverlay(ctx: CanvasRenderingContext2D | null) {
     ctx.restore();
   }
 }
-
-// old stuff
-
-// export function drawLine(ctx: CanvasRenderingContext2D, p1: Vector2, p2: Vector2, color: string = 'white', lineWidth: number = 1 ): void {
-//   ctx.save();
-//   ctx.beginPath();
-//   ctx.strokeStyle = color;
-//   ctx.lineWidth = lineWidth;
-
-//   ctx.moveTo(...p1.array());
-//   ctx.lineTo(...p2.array());
-
-//   ctx.stroke();
-//   ctx.restore();
-// }

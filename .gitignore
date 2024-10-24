@@ -6,3 +6,6 @@ public/js/*
 
 # test stuff
 test
+
+# ignore old backup stuff (mostly some code snippets)
+backup
