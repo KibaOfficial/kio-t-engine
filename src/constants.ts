@@ -5,6 +5,7 @@
 
 let gameInit: boolean = false;
 let gameRun: boolean = true;
+let gameTitle: string = "Kio T Engine"
 
 export interface GameCanvas {
     game: HTMLCanvasElement | null;
@@ -20,6 +21,10 @@ export function setGameRun(value: boolean): void {
     gameRun = value;
 }
 
+export function setGameTitle(title: string): void {
+    gameTitle = title
+}
+
 // Getters
 export function getGameInit(): boolean {
     return gameInit;
@@ -27,6 +32,10 @@ export function getGameInit(): boolean {
 
 export function getGameRun(): boolean {
     return gameRun;
+}
+
+export function getGameTitle(): string {
+    return gameTitle;
 }
 
 // Reset all game states

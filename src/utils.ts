@@ -3,6 +3,8 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
+import { getGameTitle, setGameInit } from "./constants.js";
+
 export function updateLayer(
   ctx: CanvasRenderingContext2D | null,
   drawFn: (ctx: CanvasRenderingContext2D) => void
@@ -12,6 +14,11 @@ export function updateLayer(
   }
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   drawFn(ctx);
+}
+
+export function initGame(): void {
+  document.title = getGameTitle();
+  setGameInit(true);
 }
 
 export function updateFPS(dt: number, ctx: CanvasRenderingContext2D) {
