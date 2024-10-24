@@ -7,7 +7,7 @@
 import { DeltaTime } from "./classes/DeltaTime.js";
 import { InputManager } from "./classes/InputManager.js";
 import { WindowManager } from "./classes/WindowManager.js";
-import { getGameInit, getGameRun } from "./constants.js";
+import { getGameInit, getGameRun, setGameTitle } from "./constants.js";
 import { initGame, updateFPS } from "./utils.js";
 import { drawPauseOverlay } from "./Graphics.js";
 import { SceneManager } from "./classes/SceneManager.js";
@@ -24,6 +24,9 @@ const gameScene = new Scene("gameScene", window.innerWidth, window.innerHeight);
 sceneManager.addScene(gameScene);
 sceneManager.switchScene("gameScene");
 
+// Set gametitle
+setGameTitle("Kio T Engine");
+
 // Initialize the game loop
 export function gameLoop(currentTime: DOMHighResTimeStamp) {
   // Resize the canvas using WindowManager
@@ -34,7 +37,7 @@ export function gameLoop(currentTime: DOMHighResTimeStamp) {
   
     // Check if the game is running
     if (getGameRun()) {
-      if (getGameInit() === false) {
+      if (!getGameInit()) {
         initGame();
       }
       // If the game is paused, show the pause overlay

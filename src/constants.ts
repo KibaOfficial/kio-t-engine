@@ -5,7 +5,7 @@
 
 let gameInit: boolean = false;
 let gameRun: boolean = true;
-let gameTitle: string = "Kio T Engine"
+let gameTitle: string
 
 export interface GameCanvas {
     game: HTMLCanvasElement | null;
