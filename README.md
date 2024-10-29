@@ -5,7 +5,7 @@
  https://opensource.org/licenses/MIT
 -->
 
-# Kio T Engine
+# Kio T Engine [![wakatime](https://wakatime.com/badge/user/8300a2f0-77bf-425e-bf9d-5ceed008c503/project/0d1278cd-31b0-4db7-a9de-455305c78bd2.svg)](https://wakatime.com/badge/user/8300a2f0-77bf-425e-bf9d-5ceed008c503/project/0d1278cd-31b0-4db7-a9de-455305c78bd2)
 
 Kio T Engine is a lightweight 2D game engine written in TypeScript, focused on creating browser-based games with only using the web API. The engine features essential systems like input management, delta time for frame-independent updates, window resizing, and a simple pause system.
 

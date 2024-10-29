@@ -72,12 +72,14 @@ export class WindowManager {
    */
   public resizeCanvas(game: HTMLCanvasElement): void {
     const { width, height } = this.getDimensions();
-    game.width = width;
-    game.height = height;
-
-    Logger({
-      status: "INFO",
-      message: `Canvas resized to: ${width}x${height}`,
-    });
+    if (game.width !== width || game.height !== height) {
+      game.width = width;
+      game.height = height;
+  
+      Logger({
+        status: "INFO",
+        message: `Canvas resized to: ${width}x${height}`,
+      });
+    }
   }
 }

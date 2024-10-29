@@ -10,13 +10,20 @@ export class Scene {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
 
-  constructor(id: string, width: number, height: number) {
+  constructor(
+    id: string,
+    width: number,
+    height: number,
+    // fillstyle: string | CanvasGradient | CanvasPattern,
+  ) {
     this.id = id;
     this.canvas = document.createElement("canvas");
     this.ctx = this.createContext(this.canvas);
     this.canvas.id = id;
+    // this.ctx.fillStyle = fillstyle;
     this.canvas.width = width;
     this.canvas.height = height;
+    // this.ctx.fillRect(0, 10, width, height)
   }
 
   private createContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
@@ -32,10 +39,10 @@ export class Scene {
   }
 
   update(deltaTime: number): void {
-    Logger({ status: "WARN", message: "Scene.update() not implemented yet."});
+    Logger({ status: "WARN", message: "Scene.update() not implemented yet." });
   }
 
   render(): void {
-    Logger({ status: "WARN", message: "Scene.render() not implemented yet."});
+    Logger({ status: "WARN", message: "Scene.render() not implemented yet." });
   }
 }
