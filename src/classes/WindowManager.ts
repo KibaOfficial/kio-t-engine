@@ -65,17 +65,17 @@ export class WindowManager {
   /**
    * Resizes the game canvas to match the current window dimensions.
    *
-   * @param game - The HTMLCanvasElement representing the game canvas.
+   * @param canvas - The HTMLCanvasElement representing the game canvas.
    * @example
    * const canvas = document.querySelector("canvas");
    * windowManager.resizeCanvas(canvas);
    */
-  public resizeCanvas(game: HTMLCanvasElement): void {
+  public resizeCanvas(canvas: HTMLCanvasElement): void {
     const { width, height } = this.getDimensions();
-    if (game.width !== width || game.height !== height) {
-      game.width = width;
-      game.height = height;
-  
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+
       Logger({
         status: "INFO",
         message: `Canvas resized to: ${width}x${height}`,

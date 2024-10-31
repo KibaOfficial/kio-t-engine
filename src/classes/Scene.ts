@@ -9,21 +9,26 @@ export class Scene {
   id: string;
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
+  backgroundColor: string;
 
   constructor(
     id: string,
     width: number,
     height: number,
-    // fillstyle: string | CanvasGradient | CanvasPattern,
+    backgroundColor: string = "black",
+    zIndex: number = 1
   ) {
     this.id = id;
     this.canvas = document.createElement("canvas");
     this.ctx = this.createContext(this.canvas);
     this.canvas.id = id;
-    // this.ctx.fillStyle = fillstyle;
     this.canvas.width = width;
     this.canvas.height = height;
-    // this.ctx.fillRect(0, 10, width, height)
+    this.canvas.style.position = "absolute"; // Ensure the canvas is positioned absolutely
+    this.canvas.style.top = "0";
+    this.canvas.style.left = "0";
+    this.canvas.style.zIndex = zIndex.toString(); // Set the z-index
+    this.backgroundColor = backgroundColor;
   }
 
   private createContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
@@ -39,10 +44,21 @@ export class Scene {
   }
 
   update(deltaTime: number): void {
-    Logger({ status: "WARN", message: "Scene.update() not implemented yet." });
+    // Implement your update logic here
+    // Example: Update positions of objects in the scene
+    // this.objects.forEach(object => object.update(deltaTime));
   }
 
   render(): void {
-    Logger({ status: "WARN", message: "Scene.render() not implemented yet." });
+    // Fill the canvas with the background color
+    this.ctx.fillStyle = this.backgroundColor;
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Render other scene elements here
+    // Example: this.objects.forEach(object => object.render(this.ctx));
+  }
+
+  clear(): void {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 }

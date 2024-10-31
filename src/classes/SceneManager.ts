@@ -5,42 +5,57 @@
 
 import Logger from "../tools/Logger.js";
 import { Scene } from "./Scene.js";
+import { WindowManager } from "./WindowManager.js";
 
 export class SceneManager {
-  private scenes: Map<string, Scene> = new Map();
-  private activeScene: Scene | null = null;
+    private scenes: Map<string, Scene>;
+    private activeScenes: Set<Scene>;
+    private windowManager: WindowManager;
 
-  addScene(scene: Scene): void {
-    // Append the canvas to the document body
-    document.body.appendChild(scene.canvas);
-
-    this.scenes.set(scene.id, scene);
-  }
-
-  switchScene(sceneId: string): void {
-    if (this.activeScene) {
-      document.body.removeChild(this.activeScene.canvas);
+    constructor(windowManager: WindowManager) {
+        this.scenes = new Map();
+        this.activeScenes = new Set();
+        this.windowManager = windowManager;
     }
 
-    const newScene = this.scenes.get(sceneId)
-    if (newScene) {
-      this.activeScene = newScene;
-      document.body.appendChild(newScene.canvas);
-      Logger({ status: "INFO", message: `Switched to scene ${sceneId}`});
-    } else {
-      Logger({ status: "ERROR", message: `Scene ${sceneId} not found.`});
-    }
-  }
+    addScene(scene: Scene): void {
+        // Append the canvas to the document body
+        document.body.appendChild(scene.canvas);
 
-  update(deltaTime: number): void {
-    if (this.activeScene) {
-      this.activeScene.update(deltaTime);
+        this.scenes.set(scene.id, scene);
     }
-  }
 
-  render(): void {
-    if (this.activeScene) {
-      this.activeScene.render();
+    activateScene(sceneId: string): void {
+        const scene = this.scenes.get(sceneId);
+        if (scene) {
+            this.activeScenes.add(scene);
+            Logger({ status: "INFO", message: `Activated scene ${sceneId}` });
+        } else {
+            Logger({ status: "ERROR", message: `Scene ${sceneId} not found.` });
+        }
     }
-  }
+
+    deactivateScene(sceneId: string): void {
+        const scene = this.scenes.get(sceneId);
+        if (scene) {
+            this.activeScenes.delete(scene);
+            Logger({ status: "INFO", message: `Deactivated scene ${sceneId}` });
+        } else {
+            Logger({ status: "ERROR", message: `Scene ${sceneId} not found.` });
+        }
+    }
+
+    update(deltaTime: number): void {
+        this.activeScenes.forEach(scene => {
+            this.windowManager.resizeCanvas(scene.canvas);
+            scene.update(deltaTime);
+        });
+    }
+
+    render(): void {
+        this.activeScenes.forEach(scene => {
+            this.windowManager.resizeCanvas(scene.canvas);
+            scene.render();
+        });
+    }
 }
