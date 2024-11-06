@@ -3,7 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import Logger from '../tools/Logger';
+import Logger from '../tools/Logger.js';
 
 /**
  * Represents a utility for tracking and calculating delta time (the time difference between frames),
@@ -40,8 +40,6 @@ export class DeltaTime {
 
         this.deltaTime = (currentTime - this.lastTime) / 1000;
         this.lastTime = currentTime;
-
-        Logger({ status: "INFO", message: `Delta time: ${this.deltaTime.toFixed(3)} seconds` });
     }
 
     /**
