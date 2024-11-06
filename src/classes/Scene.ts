@@ -3,6 +3,8 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
+// src/classes/Scene.ts
+
 import Logger from "../tools/Logger.js";
 
 export class Scene {
@@ -45,8 +47,6 @@ export class Scene {
 
   update(deltaTime: number): void {
     // Implement your update logic here
-    // Example: Update positions of objects in the scene
-    // this.objects.forEach(object => object.update(deltaTime));
   }
 
   render(): void {
@@ -55,7 +55,6 @@ export class Scene {
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     // Render other scene elements here
-    // Example: this.objects.forEach(object => object.render(this.ctx));
   }
 
   clear(): void {

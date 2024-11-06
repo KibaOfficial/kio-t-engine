@@ -5,7 +5,7 @@
 
 let gameInit: boolean = false;
 let gameRun: boolean = true;
-let gameTitle: string
+let gameTitle: string;
 
 export interface GameCanvas {
     game: HTMLCanvasElement | null;
@@ -14,6 +14,7 @@ export interface GameCanvas {
 
 // Setters
 export function setGameInit(value: boolean): void {
+    console.log(`Setting gameInit to ${value}`);
     gameInit = value;
 }
 
@@ -22,7 +23,7 @@ export function setGameRun(value: boolean): void {
 }
 
 export function setGameTitle(title: string): void {
-    gameTitle = title
+    gameTitle = title;
 }
 
 // Getters
